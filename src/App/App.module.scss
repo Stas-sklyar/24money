@@ -1,0 +1,17 @@
+.App {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(8, 8, 8, 0.932);
+
+    &-Body {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    &-Box {
+        width: 800px;
+        height: 500px;
+    }
+}

@@ -14,7 +14,7 @@ const App = () => {
       <CssBaseline />
       <div className={s.App} >
         <Container className={s["App-Body"]} maxWidth="lg" >
-          <Paper className={s["App-Box"]} elevation={2} variant="outlined">
+          <Paper className={s["App-Box"]} elevation={2} variant="outlined" >
             <ItemsExpenses />
           </Paper>
         </Container>

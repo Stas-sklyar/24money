@@ -1,47 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from "../../redusers/rootReducer"
 import s from "./itemsExpenses.module.scss"
 
-import icon from "../../img/expenses/3.png"
 import AddExpenses from './AddExpenses/AddExpenses'
-
-import { Doughnut } from 'react-chartjs-2';
+import MainDiagram from './MainDiagram/MainDiagram'
 
 const ItemsExpenses = () => {
-    const data = {
-        labels: [
-            '',
-            '',
-            ''
-        ],
-        datasets: [{
-            data: [300, 50, 100],
-            backgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56'
-            ],
-            hoverBackgroundColor: [
-                '#FF6384',
-                '#36A2EB',
-                '#FFCE56'
-            ]
-        }]
-    };
-
 
     const itemsExpenses = useSelector((state: RootState) => state.itemsExpenses.itemsExpenses)
 
     return (
         <div className={s["ItemsExpenses"]} >
-            {/* {
+
+            {
                 itemsExpenses.length > 0 &&
-                itemsExpenses.map(({ expensesName, moneySpend, id, icon }: any) => {
+                itemsExpenses.map(({ expensesName, moneySpend, id, icon, bgColor }: any) => {
                     return (
-                        <div className={s["ItemsExpenses-Item"]} id={id}>
+                        <div className={s["ItemsExpenses-Item"]} key={id}>
                             <div className={s["ItemsExpenses-Name"]} >{expensesName}</div>
-                            <div className={s["ItemsExpenses-WrapForIcon"]} >
+                            <div className={s["ItemsExpenses-WrapForIcon"]} style={{ backgroundColor: bgColor }} >
                                 <img className={s["ItemsExpenses-Icon"]} src={icon} alt={"icon"} />
                             </div>
                             <div className={s["ItemsExpenses-Money"]} >
@@ -51,11 +29,13 @@ const ItemsExpenses = () => {
                         </div>
                     )
                 })
-            } */}
+            }
 
-            <Doughnut data={data} width={500} height={160} />
+            <div className={s["ItemsExpenses-Diagram"]}>
+                <MainDiagram />
+            </div>
+
             <AddExpenses />
-
 
         </div >
     );

@@ -22,9 +22,9 @@ const initialState = {
 export const itemsExpensesReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case "ADD_EXPENSE_ITEM":
-            let copyState = { ...state }
-            copyState.itemsExpenses.push(action.payload)
-            return copyState
+            let copyState = [...state.itemsExpenses]
+            copyState.push(action.payload)
+            return { itemsExpenses: [...copyState] }
 
         default:
             return state;

@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from "../../redusers/rootReducer"
 import s from "./itemsExpenses.module.scss"
 
 import AddExpenses from './AddExpenses/AddExpenses'
 import MainDiagram from './MainDiagram/MainDiagram'
+import AddExpensesWindow from './AddExpensesWindow/AddExpensesWindow'
+import { toggleAddExpensesWindow } from '../../actions/actions'
 
 const ItemsExpenses = () => {
+    const dispatch = useDispatch()
 
     const itemsExpenses = useSelector((state: RootState) => state.itemsExpenses.itemsExpenses)
+    const addExpensesIsOpen = useSelector((state: RootState) => state.addExpensesIsOpen.addExpensesIsOpen)
+
 
     return (
         <div className={s["ItemsExpenses"]} >
@@ -35,7 +40,19 @@ const ItemsExpenses = () => {
                 <MainDiagram />
             </div>
 
-            <AddExpenses />
+            <div onClick={() => dispatch(toggleAddExpensesWindow(true))} >
+                {
+                    itemsExpenses.length < 10 &&
+                    <AddExpenses />
+                }
+            </div>
+
+            <div>
+                {
+                    addExpensesIsOpen &&
+                    <AddExpensesWindow />
+                }
+            </div>
 
         </div >
     );

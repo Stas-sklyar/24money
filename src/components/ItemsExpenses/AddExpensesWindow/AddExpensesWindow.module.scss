@@ -1,0 +1,23 @@
+.AddExpensesWindow {
+
+    &-Body {
+    }
+
+    &-Box {
+        width: 500px;
+        height: 300px;
+        background-color: #fff;
+        outline: none;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &-CloseIcon {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+    }
+}

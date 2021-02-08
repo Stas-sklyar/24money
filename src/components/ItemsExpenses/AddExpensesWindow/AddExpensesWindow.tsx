@@ -48,7 +48,7 @@ const AddExpensesWindow = () => {
                             <TextField id="outlined-basic" label="Введите название" variant="outlined"
                                 fullWidth required placeholder="Например: Хобби" margin="normal"
                                 value={inputExpensesName}
-                                onChange={handleChangeForName}
+                                onChange={handleChangeForName} autoFocus={true}
                             />
 
                             <div style={{ marginTop: "25px" }}></div>

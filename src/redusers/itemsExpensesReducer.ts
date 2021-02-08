@@ -20,10 +20,14 @@ const initialState = {
 }
 
 export const itemsExpensesReducer = (state = initialState, action: any) => {
+    let copyState = [...state.itemsExpenses]
     switch (action.type) {
         case "ADD_EXPENSE_ITEM":
-            let copyState = [...state.itemsExpenses]
             copyState.push(action.payload)
+            return { itemsExpenses: [...copyState] }
+
+        case "INPUT_EXPENSE_SUM":
+            copyState.map((item) => { if (item.id === action.payload.id) { item.moneySpend += action.payload.sum } })
             return { itemsExpenses: [...copyState] }
 
         default:

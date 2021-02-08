@@ -7,3 +7,11 @@ export const toggleAddExpensesWindow = (e) => ({
     type: "TOGGLE_ADD_EXPENSES_WINDOW",
     payload: e,
 })
+
+export const inputExpenseSum = (id, sum) => ({
+    type: "INPUT_EXPENSE_SUM",
+    payload: {
+        id: id,
+        sum: sum
+    },
+})

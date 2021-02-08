@@ -42,7 +42,7 @@ const ItemsExpenses = () => {
 
             <div onClick={() => dispatch(toggleAddExpensesWindow(true))} >
                 {
-                    itemsExpenses.length < 10 &&
+                    itemsExpenses.length < 9 &&
                     <AddExpenses />
                 }
             </div>

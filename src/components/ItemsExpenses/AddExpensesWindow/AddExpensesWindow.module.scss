@@ -12,6 +12,8 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+        padding: 15px;
+        text-align: center;
     }
 
     &-CloseIcon {
@@ -19,5 +21,9 @@
         right: 10px;
         top: 10px;
         cursor: pointer;
+    }
+
+    &-Title {
+        text-align: center;
     }
 }

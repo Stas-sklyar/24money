@@ -29,7 +29,13 @@ const MainDiagram = () => {
     };
 
     return (
-        <Doughnut data={data} width={750} height={200} />
+        <Doughnut data={data} width={750} height={200}
+            options={
+                {
+                    legend: {
+                        display: false,
+                    },
+                }} />
     );
 }
 

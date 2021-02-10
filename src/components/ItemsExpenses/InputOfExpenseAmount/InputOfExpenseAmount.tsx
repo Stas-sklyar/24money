@@ -8,10 +8,11 @@ import s from './InputOfExpenseAmount.module.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../redusers/rootReducer'
-import { inputExpenseSum } from '../../../actions/actions';
+import { inputExpenseSum, toggleInputExpenseAmountWindow } from '../../../actions/actions';
 
 const InputOfExpenseAmount = ({ curentItem }: any) => {
     const dispatch = useDispatch()
+    const inputExpenseAmountIsOpen = useSelector((state: RootState) => state.inputExpenseAmountWindow.inputExpenseAmountWindow)
 
     const [inputExpensesSum, setInputExpensesSum] = useState('');
     const handleChangeForSum = (e: any) => {
@@ -20,26 +21,37 @@ const InputOfExpenseAmount = ({ curentItem }: any) => {
 
 
     const addExpenses = () => {
-        if (parseInt(inputExpensesSum) < 1) {
+        if (parseInt(inputExpensesSum) < 1 || inputExpensesSum.length == 0) {
             alert("Введите сумму больше нуля")
         }
         else {
             dispatch(inputExpenseSum(curentItem, parseInt(inputExpensesSum)))
+            dispatch(toggleInputExpenseAmountWindow(false))
         }
     }
 
     return (
         <>
-            <div className={s["InputOfExpenseAmount"]}>
-                <Modal className={s["InputOfExpenseAmount-Body"]} open={true}>
+            <div className={s["InputOfExpenseAmount"]}
+                onKeyPress={(e) => { if (e.key === 'Enter') { addExpenses() } }}
+                onClick={(e) => {
+                    if (!(e.target as Element).className) {
+                        dispatch(toggleInputExpenseAmountWindow(false))
+                    }
+                }} >
+
+                <Modal className={s["InputOfExpenseAmount-Body"]} open={inputExpenseAmountIsOpen}>
                     <Fade in={true} timeout={400}>
                         <div className={s["InputOfExpenseAmount-Box"]}>
-                            <div className={s["InputOfExpenseAmount-CloseIcon"]}>
+                            <div className={s["InputOfExpenseAmount-CloseIcon"]}
+                                onClick={() => dispatch(toggleInputExpenseAmountWindow(false))}>
                                 ✕
                             </div>
                             <h1 className={s["InputOfExpenseAmount-Title"]}>Введите сумму которую вы потратили</h1>
 
-                            <Input className={s["InputOfExpenseAmount-Input"]} placeholder="Введите сумму" autoFocus={true} type="number" required value={inputExpensesSum} onChange={handleChangeForSum} />
+                            <Input className={s["InputOfExpenseAmount-Input"]} placeholder="Введите сумму" autoFocus={true}
+                                type="number" required
+                                value={inputExpensesSum} onChange={handleChangeForSum} />
 
                             <Button variant="contained" size="large" onClick={addExpenses}>
                                 Отправить сумму

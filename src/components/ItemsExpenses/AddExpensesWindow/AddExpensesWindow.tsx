@@ -21,7 +21,9 @@ const AddExpensesWindow = () => {
         setInputExpensesName(e.target.value);
     };
 
-    const toggleWindowIsOpen = () => dispatch(toggleAddExpensesWindow(false))
+    // const toggleWindowIsOpen = () => {
+    //     dispatch(toggleAddExpensesWindow(false))
+    // }
 
     const addExpenses = () => {
         if (inputExpensesName.length > 3) {
@@ -34,14 +36,23 @@ const AddExpensesWindow = () => {
 
     }
 
+
     return (
         <>
-            <div className={s["AddExpensesWindow"]}>
+            <div className={s["AddExpensesWindow"]}
+                onKeyPress={(e) => {
+                    if (e.key === 'Enter') { addExpenses() }
+                }}
+                onClick={(e) => {
+                    if (!(e.target as Element).className) {
+                        dispatch(toggleAddExpensesWindow(false))
+                    }
+                }}>
                 <Modal className={s["AddExpensesWindow-Body"]} open={addExpensesIsOpen}>
                     <Fade in={addExpensesIsOpen} timeout={400}>
                         <div className={s["AddExpensesWindow-Box"]}>
                             <div className={s["AddExpensesWindow-CloseIcon"]}
-                                onClick={() => toggleWindowIsOpen()}>
+                                onClick={() => dispatch(toggleAddExpensesWindow(false))}>
                                 ✕
                             </div>
                             <h1 className={s["AddExpensesWindow-Title"]}>Введите название категории</h1>

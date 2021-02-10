@@ -6,7 +6,7 @@ import s from "./itemsExpenses.module.scss"
 import AddExpenses from './AddExpenses/AddExpenses'
 import MainDiagram from './MainDiagram/MainDiagram'
 import AddExpensesWindow from './AddExpensesWindow/AddExpensesWindow'
-import { toggleAddExpensesWindow } from '../../actions/actions'
+import { toggleAddExpensesWindow, toggleInputExpenseAmountWindow } from '../../actions/actions'
 import InputOfExpenseAmount from './InputOfExpenseAmount/InputOfExpenseAmount'
 
 const ItemsExpenses = () => {
@@ -16,7 +16,12 @@ const ItemsExpenses = () => {
 
     const itemsExpenses = useSelector((state: RootState) => state.itemsExpenses.itemsExpenses)
     const addExpensesIsOpen = useSelector((state: RootState) => state.addExpensesIsOpen.addExpensesIsOpen)
+    const inputExpenseAmountIsOpen = useSelector((state: RootState) => state.inputExpenseAmountWindow.inputExpenseAmountWindow)
 
+    const handlerForExpensesItem = (id: any) => {
+        setCurentItemForAddSum(id)
+        dispatch(toggleInputExpenseAmountWindow(true))
+    }
 
     return (
         <div className={s["ItemsExpenses"]} >
@@ -27,18 +32,18 @@ const ItemsExpenses = () => {
                         <div className={s["ItemsExpenses-Item"]} key={id}>
                             <div className={s["ItemsExpenses-Name"]} >{expensesName}</div>
                             <div className={s["ItemsExpenses-WrapForIcon"]} style={{ backgroundColor: bgColor }}
-                                onClick={() => setCurentItemForAddSum(id)} >
+                                onClick={() => handlerForExpensesItem(id)} >
                                 <img className={s["ItemsExpenses-Icon"]} src={icon} alt={"icon"} />
                             </div>
                             <div className={s["ItemsExpenses-Money"]} >
                                 {moneySpend}
-                                <span> ₽</span>
+                                <span> ₴</span>
                             </div>
                         </div>
                     )
                 })}
 
-            <InputOfExpenseAmount curentItem={curentItemForAddSum} />
+            {inputExpenseAmountIsOpen && <InputOfExpenseAmount curentItem={curentItemForAddSum} />}
 
             <div className={s["ItemsExpenses-Diagram"]}>
                 <MainDiagram />

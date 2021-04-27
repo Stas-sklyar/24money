@@ -10,20 +10,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../redusers/rootReducer'
 import { addNewExpenses, toggleAddExpensesWindow } from '../../../actions/actions'
 
-const AddExpensesWindow = () => {
+const AddExpensesWindow: React.FC = () => {
     const dispatch = useDispatch()
 
     const itemsExpenses = useSelector((state: RootState) => state.itemsExpenses.itemsExpenses)
     const addExpensesIsOpen = useSelector((state: RootState) => state.addExpensesIsOpen.addExpensesIsOpen)
 
     const [inputExpensesName, setInputExpensesName] = useState('');
-    const handleChangeForName = (e: any) => {
+    const handleChangeForName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputExpensesName(e.target.value);
     };
-
-    // const toggleWindowIsOpen = () => {
-    //     dispatch(toggleAddExpensesWindow(false))
-    // }
 
     const addExpenses = () => {
         if (inputExpensesName.length > 3) {
@@ -38,40 +34,38 @@ const AddExpensesWindow = () => {
 
 
     return (
-        <>
-            <div className={s["AddExpensesWindow"]}
-                onKeyPress={(e) => {
-                    if (e.key === 'Enter') { addExpenses() }
-                }}
-                onClick={(e) => {
-                    if (!(e.target as Element).className) {
-                        dispatch(toggleAddExpensesWindow(false))
-                    }
-                }}>
-                <Modal className={s["AddExpensesWindow-Body"]} open={addExpensesIsOpen}>
-                    <Fade in={addExpensesIsOpen} timeout={400}>
-                        <div className={s["AddExpensesWindow-Box"]}>
-                            <div className={s["AddExpensesWindow-CloseIcon"]}
-                                onClick={() => dispatch(toggleAddExpensesWindow(false))}>
-                                ✕
+        <div className={s["AddExpensesWindow"]}
+            onKeyPress={(e) => {
+                if (e.key === 'Enter') { addExpenses() }
+            }}
+            onClick={(e) => {
+                if (!(e.target as Element).className) {
+                    dispatch(toggleAddExpensesWindow(false))
+                }
+            }}>
+            <Modal className={s["AddExpensesWindow-Body"]} open={addExpensesIsOpen}>
+                <Fade in={addExpensesIsOpen} timeout={400}>
+                    <div className={s["AddExpensesWindow-Box"]}>
+                        <div className={s["AddExpensesWindow-CloseIcon"]}
+                            onClick={() => dispatch(toggleAddExpensesWindow(false))}>
+                            ✕
                             </div>
-                            <h1 className={s["AddExpensesWindow-Title"]}>Введите название категории</h1>
-                            <TextField id="outlined-basic" label="Введите название" variant="outlined"
-                                fullWidth required placeholder="Например: Хобби" margin="normal"
-                                value={inputExpensesName}
-                                onChange={handleChangeForName} autoFocus={true}
-                            />
+                        <h1 className={s["AddExpensesWindow-Title"]}>Введите название категории</h1>
+                        <TextField id="outlined-basic" label="Введите название" variant="outlined"
+                            fullWidth required placeholder="Например: Хобби" margin="normal"
+                            value={inputExpensesName}
+                            onChange={handleChangeForName} autoFocus={true}
+                        />
 
-                            <div style={{ marginTop: "25px" }}></div>
-                            <Button variant="contained" size="large" onClick={addExpenses}>
-                                Добавить категорию
+                        <div style={{ marginTop: "25px" }}></div>
+                        <Button variant="contained" size="large" onClick={addExpenses}>
+                            Добавить категорию
                                 </Button>
 
-                        </div>
-                    </Fade>
-                </Modal>
-            </div>
-        </>
+                    </div>
+                </Fade>
+            </Modal>
+        </div>
     );
 }
 

@@ -1,9 +1,14 @@
+import { ActionsTypes } from "../actions/actions";
 
-const initialState = {
+export type InitialStateType = {
+    inputExpenseAmountWindow: boolean
+}
+
+const initialState: InitialStateType = {
     inputExpenseAmountWindow: false,
 }
 
-export const inputExpenseAmountWindow = (state = initialState, action: any) => {
+export const inputExpenseAmountWindow = (state = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case "TOGGLE_INPUT_EXPENSE_AMOUNT_WINDOW":
             return { ...state, inputExpenseAmountWindow: action.payload }

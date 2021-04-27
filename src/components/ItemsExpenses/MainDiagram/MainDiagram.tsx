@@ -3,17 +3,18 @@ import { RootState } from "../../../redusers/rootReducer"
 
 
 import { Doughnut } from 'react-chartjs-2'
+import { ItemsExpensesType } from '../../../redusers/itemsExpensesReducer'
 
-const MainDiagram = () => {
+const MainDiagram: React.FC = () => {
 
-    const itemsExpenses = useSelector((state: RootState) => state.itemsExpenses.itemsExpenses)
+    let itemsExpenses = useSelector((state: RootState) => state.itemsExpenses.itemsExpenses)
 
-    const expensesNames: any = []
-    const expensesMoney: any = []
-    const expensesColor: any = []
+    const expensesNames: string[] = []
+    const expensesMoney: number[] = []
+    const expensesColor: string[] = []
 
     itemsExpenses.map(
-        function (e: any) {
+        (e: ItemsExpensesType) => {
             expensesNames.push(e.expensesName)
             expensesMoney.push(e.moneySpend)
             expensesColor.push(e.bgColor)
@@ -35,7 +36,8 @@ const MainDiagram = () => {
                     legend: {
                         display: false,
                     },
-                }} />
+                }}
+        />
     );
 }
 

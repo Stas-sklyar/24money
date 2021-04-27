@@ -1,11 +1,8 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import s from "../itemsExpenses.module.scss"
-import { addNewExpenses } from "../../../actions/actions"
-import { RootState } from '../../../redusers/rootReducer'
 
 
-const AddExpenses = () => {
+const AddExpenses: React.FC = () => {
 
     return (
         <div className={s["ItemsExpenses-Item"]}>

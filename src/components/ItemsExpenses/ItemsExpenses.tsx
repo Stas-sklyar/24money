@@ -8,8 +8,9 @@ import MainDiagram from './MainDiagram/MainDiagram'
 import AddExpensesWindow from './AddExpensesWindow/AddExpensesWindow'
 import { toggleAddExpensesWindow, toggleInputExpenseAmountWindow } from '../../actions/actions'
 import InputOfExpenseAmount from './InputOfExpenseAmount/InputOfExpenseAmount'
+import { ItemsExpensesType } from '../../redusers/itemsExpensesReducer'
 
-const ItemsExpenses = () => {
+const ItemsExpenses: React.FC = () => {
     const dispatch = useDispatch()
 
     const [curentItemForAddSum, setCurentItemForAddSum] = useState(0);
@@ -18,7 +19,7 @@ const ItemsExpenses = () => {
     const addExpensesIsOpen = useSelector((state: RootState) => state.addExpensesIsOpen.addExpensesIsOpen)
     const inputExpenseAmountIsOpen = useSelector((state: RootState) => state.inputExpenseAmountWindow.inputExpenseAmountWindow)
 
-    const handlerForExpensesItem = (id: any) => {
+    const handlerForExpensesItem = (id: number) => {
         setCurentItemForAddSum(id)
         dispatch(toggleInputExpenseAmountWindow(true))
     }
@@ -27,7 +28,7 @@ const ItemsExpenses = () => {
         <div className={s["ItemsExpenses"]} >
 
             {itemsExpenses.length > 0 &&
-                itemsExpenses.map(({ expensesName, moneySpend, id, icon, bgColor }: any) => {
+                itemsExpenses.map(({ expensesName, moneySpend, id, icon, bgColor }: ItemsExpensesType) => {
                     return (
                         <div className={s["ItemsExpenses-Item"]} key={id}>
                             <div className={s["ItemsExpenses-Name"]} >{expensesName}</div>
@@ -43,7 +44,7 @@ const ItemsExpenses = () => {
                     )
                 })}
 
-            {inputExpenseAmountIsOpen && <InputOfExpenseAmount curentItem={curentItemForAddSum} />}
+            {inputExpenseAmountIsOpen && <InputOfExpenseAmount curentItemId={curentItemForAddSum} />}
 
             <div className={s["ItemsExpenses-Diagram"]}>
                 <MainDiagram />

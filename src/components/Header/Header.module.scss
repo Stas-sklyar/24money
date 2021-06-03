@@ -1,0 +1,27 @@
+.Header {
+    &-Column {
+        display: flex;
+        align-items: center;
+    }
+    &-Logo {
+        font-size: 26px;
+        font-weight: 600;
+        margin-right: 50px;
+        & span {
+            font-size: 14px;
+        }
+    }
+    &-Btn {
+        margin-right: 15px !important;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    &-Label {
+        font-size: 16px;
+        margin-right: 25px;
+        & b {
+            font-size: 18px;
+        }
+    }
+}

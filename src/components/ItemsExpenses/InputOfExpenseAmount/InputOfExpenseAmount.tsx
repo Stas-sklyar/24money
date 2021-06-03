@@ -21,7 +21,7 @@ const InputOfExpenseAmount: React.FC<{ curentItemId: number }> = ({ curentItemId
 
 
     const addExpenses = () => {
-        if (parseInt(inputExpensesSum) <= 0) {
+        if (parseInt(inputExpensesSum) <= 0 || isNaN(parseInt(inputExpensesSum))) {
             alert("Введите сумму больше нуля")
         }
         else {

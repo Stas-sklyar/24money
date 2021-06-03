@@ -9,6 +9,7 @@ import AddExpensesWindow from './AddExpensesWindow/AddExpensesWindow'
 import { toggleAddExpensesWindow, toggleInputExpenseAmountWindow } from '../../actions/actions'
 import InputOfExpenseAmount from './InputOfExpenseAmount/InputOfExpenseAmount'
 import { ItemsExpensesType } from '../../redusers/itemsExpensesReducer'
+import AddIncomesWindow from '../AddIncomesWindow/AddIncomesWindow'
 
 const ItemsExpenses: React.FC = () => {
     const dispatch = useDispatch()
@@ -18,6 +19,7 @@ const ItemsExpenses: React.FC = () => {
     const itemsExpenses = useSelector((state: RootState) => state.itemsExpenses.itemsExpenses)
     const addExpensesIsOpen = useSelector((state: RootState) => state.addExpensesIsOpen.addExpensesIsOpen)
     const inputExpenseAmountIsOpen = useSelector((state: RootState) => state.inputExpenseAmountWindow.inputExpenseAmountWindow)
+    const incomeWindowIsOpen = useSelector((state: RootState) => state.incomesWindow.isOpen)
 
     const handlerForExpensesItem = (id: number) => {
         setCurentItemForAddSum(id)
@@ -55,6 +57,8 @@ const ItemsExpenses: React.FC = () => {
             </div>
 
             {addExpensesIsOpen && <AddExpensesWindow />}
+
+            {incomeWindowIsOpen && <AddIncomesWindow />}
 
         </div >
     );

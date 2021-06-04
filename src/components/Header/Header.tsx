@@ -1,6 +1,6 @@
 import { AppBar, Toolbar, Button, Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleIncomesWindow } from '../../actions/actions';
+import { toggleHistoryWindow, toggleIncomesWindow } from '../../actions/actions';
 import { RootState } from "../../redusers/rootReducer"
 import s from "./Header.module.scss"
 
@@ -19,10 +19,6 @@ const Header = () => {
         sumIncomes += moneyIncome
     })
 
-    const handlerForIncomes = () => {
-        dispatch(toggleIncomesWindow(true))
-    }
-
     return (
         <AppBar color="default" className={s.Header}>
             <Toolbar>
@@ -34,10 +30,12 @@ const Header = () => {
                         <Button
                             variant="outlined"
                             className={s["Header-Btn"]}
-                            onClick={() => handlerForIncomes()}
+                            onClick={() => dispatch(toggleIncomesWindow(true))}
                         >Добавить доходы</Button>
 
-                        <Button variant="outlined" className={s["Header-Btn"]}>История</Button>
+                        <Button variant="outlined" className={s["Header-Btn"]}
+                            onClick={() => dispatch(toggleHistoryWindow(true))}
+                        >История трат</Button>
                     </Grid>
 
                     <Grid item className={s["Header-Column"]}>

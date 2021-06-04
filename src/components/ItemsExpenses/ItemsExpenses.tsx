@@ -10,19 +10,23 @@ import { toggleAddExpensesWindow, toggleInputExpenseAmountWindow } from '../../a
 import InputOfExpenseAmount from './InputOfExpenseAmount/InputOfExpenseAmount'
 import { ItemsExpensesType } from '../../redusers/itemsExpensesReducer'
 import AddIncomesWindow from '../AddIncomesWindow/AddIncomesWindow'
+import HistoryWindow from '../historyWindow/historyWindow'
 
 const ItemsExpenses: React.FC = () => {
     const dispatch = useDispatch()
 
     const [curentItemForAddSum, setCurentItemForAddSum] = useState(0);
+    const [curentCategoryForHistory, setCurentCategory] = useState('');
 
     const itemsExpenses = useSelector((state: RootState) => state.itemsExpenses.itemsExpenses)
     const addExpensesIsOpen = useSelector((state: RootState) => state.addExpensesIsOpen.addExpensesIsOpen)
     const inputExpenseAmountIsOpen = useSelector((state: RootState) => state.inputExpenseAmountWindow.inputExpenseAmountWindow)
     const incomeWindowIsOpen = useSelector((state: RootState) => state.incomesWindow.isOpen)
+    const historyWindowIsOpen = useSelector((state: RootState) => state.historyWindow.isOpen)
 
-    const handlerForExpensesItem = (id: number) => {
+    const handlerForExpensesItem = (id: number, category: string) => {
         setCurentItemForAddSum(id)
+        setCurentCategory(category)
         dispatch(toggleInputExpenseAmountWindow(true))
     }
 
@@ -35,7 +39,7 @@ const ItemsExpenses: React.FC = () => {
                         <div className={s["ItemsExpenses-Item"]} key={id}>
                             <div className={s["ItemsExpenses-Name"]} >{expensesName}</div>
                             <div className={s["ItemsExpenses-WrapForIcon"]} style={{ backgroundColor: bgColor }}
-                                onClick={() => handlerForExpensesItem(id)} >
+                                onClick={() => handlerForExpensesItem(id, expensesName)} >
                                 <img className={s["ItemsExpenses-Icon"]} src={icon} alt={"icon"} />
                             </div>
                             <div className={s["ItemsExpenses-Money"]} >
@@ -46,7 +50,10 @@ const ItemsExpenses: React.FC = () => {
                     )
                 })}
 
-            {inputExpenseAmountIsOpen && <InputOfExpenseAmount curentItemId={curentItemForAddSum} />}
+            {inputExpenseAmountIsOpen &&
+                <InputOfExpenseAmount
+                    curentItemId={curentItemForAddSum}
+                    curentCategory={curentCategoryForHistory} />}
 
             <div className={s["ItemsExpenses-Diagram"]}>
                 <MainDiagram />
@@ -56,9 +63,12 @@ const ItemsExpenses: React.FC = () => {
                 {itemsExpenses.length < 9 && <AddExpenses />}
             </div>
 
+
             {addExpensesIsOpen && <AddExpensesWindow />}
 
             {incomeWindowIsOpen && <AddIncomesWindow />}
+
+            {historyWindowIsOpen && <HistoryWindow />}
 
         </div >
     );

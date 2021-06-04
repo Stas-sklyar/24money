@@ -8,11 +8,12 @@ import s from './InputOfExpenseAmount.module.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../redusers/rootReducer'
-import { inputExpenseSum, toggleInputExpenseAmountWindow } from '../../../actions/actions';
+import { addExpenseHistoryItem, inputExpenseSum, toggleInputExpenseAmountWindow } from '../../../actions/actions';
 
-const InputOfExpenseAmount: React.FC<{ curentItemId: number }> = ({ curentItemId }) => {
+const InputOfExpenseAmount: React.FC<{ curentItemId: number, curentCategory: string }> = ({ curentItemId, curentCategory }) => {
     const dispatch = useDispatch()
     const inputExpenseAmountIsOpen = useSelector((state: RootState) => state.inputExpenseAmountWindow.inputExpenseAmountWindow)
+    const expensesHistoryArr = useSelector((state: RootState) => state.historyExpenses.historyExpensesList)
 
     const [inputExpensesSum, setInputExpensesSum] = useState('');
     const handleChangeForSum = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +27,13 @@ const InputOfExpenseAmount: React.FC<{ curentItemId: number }> = ({ curentItemId
         }
         else {
             dispatch(inputExpenseSum(curentItemId, parseInt(inputExpensesSum)))
+
+            let date = new Date()
+            let month = date.getMonth() + 1
+
+            let dateNewFormat = "" + date.getDate() + " " + month + " " + date.getFullYear()
+            dispatch(addExpenseHistoryItem(curentCategory, parseInt(inputExpensesSum), expensesHistoryArr.length, dateNewFormat))
+
             dispatch(toggleInputExpenseAmountWindow(false))
         }
     }

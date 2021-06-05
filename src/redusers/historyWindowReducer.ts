@@ -1,11 +1,11 @@
 import { ActionsTypes } from "../actions/actions";
 
 export type InitialStateType = {
-    isOpen: boolean
+    isOpen: string
 }
 
 const initialState: InitialStateType = {
-    isOpen: false,
+    isOpen: 'none',
 }
 
 export const historyWindow = (state = initialState, action: ActionsTypes): InitialStateType => {

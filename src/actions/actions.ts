@@ -70,10 +70,10 @@ export const toggleInputExpenseAmountWindow = (e: boolean): ToggleInputExpenseAm
 
 export type ToggleHistoryWindowType = {
     type: "TOGGLE_HISTORY_WINDOW"
-    payload: boolean
+    payload: string
 }
 
-export const toggleHistoryWindow = (e: boolean): ToggleHistoryWindowType => ({
+export const toggleHistoryWindow = (e: string): ToggleHistoryWindowType => ({
     type: "TOGGLE_HISTORY_WINDOW",
     payload: e,
 })
@@ -98,6 +98,26 @@ export const addExpenseHistoryItem = (category: string, sum: number, id: number,
     },
 })
 
+export type AddIncomesHistoryItemType = {
+    type: "ADD_NEW_INCOMES_HISTORY_ITEM",
+    payload: {
+        sum: number
+        comment: string
+        id: number
+        date: string
+    },
+}
+
+export const addIncomesHistoryItem = (sum: number, comment: string, id: number, date: string): AddIncomesHistoryItemType => ({
+    type: "ADD_NEW_INCOMES_HISTORY_ITEM",
+    payload: {
+        sum: sum,
+        comment: comment,
+        id: id,
+        date: date
+    },
+})
+
 
 export type ActionsTypes =
     ReturnType<typeof addNewExpenses> |
@@ -107,6 +127,7 @@ export type ActionsTypes =
     ReturnType<typeof addIncome> |
     ReturnType<typeof toggleIncomesWindow> |
     ReturnType<typeof toggleHistoryWindow> |
-    ReturnType<typeof addExpenseHistoryItem>
+    ReturnType<typeof addExpenseHistoryItem> |
+    ReturnType<typeof addIncomesHistoryItem>
 
 

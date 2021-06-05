@@ -10,34 +10,32 @@ const useStyles = makeStyles({
     },
 });
 
-const ExpensesHistory: React.FC = () => {
+const IncomesHistory: React.FC = () => {
     const classes = useStyles();
-    const expensesHistoryArr = useSelector((state: RootState) => state.historyExpenses.historyExpensesList)
-    const rows = expensesHistoryArr;
+    const incomesHistoryArr = useSelector((state: RootState) => state.historyIncomes.historyIncomesList)
+    const rows = incomesHistoryArr;
 
     return (
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell align="left">Категория</TableCell>
                         <TableCell align="left">Сумма</TableCell>
                         <TableCell align="left">Дата</TableCell>
+                        <TableCell align="left">Комментарий</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {expensesHistoryArr.length > 0 &&
+                    {incomesHistoryArr.length > 0 &&
                         rows.map((row) => (
                             <TableRow key={row.id}>
-                                <TableCell component="th" scope="row">
-                                    {row.category}
-                                </TableCell>
-                                <TableCell align="left">-{row.sum}</TableCell>
+                                <TableCell align="left">+{row.sum}</TableCell>
                                 <TableCell align="left">{row.date}</TableCell>
+                                <TableCell align="left">{row.comment}</TableCell>
                             </TableRow>
                         ))
                     }
-                    {expensesHistoryArr.length === 0 &&
+                    {incomesHistoryArr.length === 0 &&
                         <h4 style={{ display: 'flex', margin: 0, padding: 10 + 'px' }}>
                             Здесь пока  ничего нету, добавьте свою первую трату
                             </h4>
@@ -48,4 +46,4 @@ const ExpensesHistory: React.FC = () => {
     );
 }
 
-export default ExpensesHistory
+export default IncomesHistory

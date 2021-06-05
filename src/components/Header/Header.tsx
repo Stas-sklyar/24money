@@ -33,12 +33,16 @@ const Header = () => {
                             onClick={() => dispatch(toggleIncomesWindow(true))}
                         >Добавить доходы</Button>
 
-                        <Button variant="outlined" className={s["Header-Btn"]}
-                            onClick={() => dispatch(toggleHistoryWindow(true))}
-                        >История трат</Button>
                     </Grid>
 
                     <Grid item className={s["Header-Column"]}>
+                        <Button variant="outlined" className={s["Header-Btn"]}
+                            onClick={() => dispatch(toggleHistoryWindow('expenses'))}
+                        >История трат</Button>
+
+                        <Button variant="outlined" className={s["Header-Btn"]}
+                            onClick={() => dispatch(toggleHistoryWindow('incomes'))}
+                        >История доходов</Button>
                         <span className={s["Header-Label"]}>Расходы: <b>-{sumExpenses}₴</b></span>
                         <span className={s["Header-Label"]}> Доходы: <b>+{sumIncomes}₴</b> </span>
                     </Grid>

@@ -25,6 +25,9 @@ const InputOfExpenseAmount: React.FC<{ curentItemId: number, curentCategory: str
         if (parseInt(inputExpensesSum) <= 0 || isNaN(parseInt(inputExpensesSum))) {
             alert("Введите сумму больше нуля")
         }
+        else if (parseInt(inputExpensesSum) > 1000000) {
+            alert("Слишком большая сумма")
+        }
         else {
             dispatch(inputExpenseSum(curentItemId, parseInt(inputExpensesSum)))
 

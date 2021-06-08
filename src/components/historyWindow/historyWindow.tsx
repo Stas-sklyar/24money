@@ -1,7 +1,7 @@
 import React from 'react'
 import { Fade, Modal } from '@material-ui/core'
 
-import s from '../ItemsExpenses/AddExpensesWindow/AddExpensesWindow.module.scss'
+import s from '../GeneralStylesForModalWindows.module.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redusers/rootReducer'
@@ -22,27 +22,27 @@ const HistoryWindow: React.FC = () => {
                 }
             }}
         >
-            <Modal className={s["AddExpensesWindow-Body"]} open={historyWindowIsOpen === 'expenses'}>
+            <Modal className={s["ModalWindow-Body"]} open={historyWindowIsOpen === 'expenses'}>
                 <Fade in={historyWindowIsOpen === 'expenses'} timeout={400} style={{ height: 'auto', width: 800 + 'px' }} >
-                    <div className={s["AddExpensesWindow-Box"]}>
-                        <div className={s["AddExpensesWindow-CloseIcon"]}
+                    <div className={s["ModalWindow-Box"]}>
+                        <div className={s["ModalWindow-CloseIcon"]}
                             onClick={() => dispatch(toggleHistoryWindow('none'))}>
                             ✕
                             </div>
-                        <h1 className={s["AddExpensesWindow-Title"]}>История трат</h1>
+                        <h1 className={s["ModalWindow-Title"]}>История трат</h1>
                         <ExpensesHistory />
                     </div>
                 </Fade>
             </Modal>
 
-            <Modal className={s["AddExpensesWindow-Body"]} open={historyWindowIsOpen === 'incomes'}>
+            <Modal className={s["ModalWindow-Body"]} open={historyWindowIsOpen === 'incomes'}>
                 <Fade in={historyWindowIsOpen === 'incomes'} timeout={400} style={{ height: 'auto', width: 800 + 'px' }} >
-                    <div className={s["AddExpensesWindow-Box"]}>
-                        <div className={s["AddExpensesWindow-CloseIcon"]}
+                    <div className={s["ModalWindow-Box"]}>
+                        <div className={s["ModalWindow-CloseIcon"]}
                             onClick={() => dispatch(toggleHistoryWindow('none'))}>
                             ✕
                             </div>
-                        <h1 className={s["AddExpensesWindow-Title"]}>История доходов</h1>
+                        <h1 className={s["ModalWindow-Title"]}>История доходов</h1>
                         <IncomesHistory />
                     </div>
                 </Fade>

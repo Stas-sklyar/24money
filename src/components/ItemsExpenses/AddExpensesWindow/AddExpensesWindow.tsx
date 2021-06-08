@@ -4,7 +4,7 @@ import { Fade } from '@material-ui/core'
 import { TextField } from '@material-ui/core'
 import { Button } from '@material-ui/core'
 
-import s from './AddExpensesWindow.module.scss'
+import s from '../../GeneralStylesForModalWindows.module.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../redusers/rootReducer'
@@ -43,14 +43,14 @@ const AddExpensesWindow: React.FC = () => {
                     dispatch(toggleAddExpensesWindow(false))
                 }
             }}>
-            <Modal className={s["AddExpensesWindow-Body"]} open={addExpensesIsOpen}>
+            <Modal className={s["ModalWindow-Body"]} open={addExpensesIsOpen}>
                 <Fade in={addExpensesIsOpen} timeout={400}>
-                    <div className={s["AddExpensesWindow-Box"]}>
-                        <div className={s["AddExpensesWindow-CloseIcon"]}
+                    <div className={s["ModalWindow-Box"]}>
+                        <div className={s["ModalWindow-CloseIcon"]}
                             onClick={() => dispatch(toggleAddExpensesWindow(false))}>
                             ✕
                             </div>
-                        <h1 className={s["AddExpensesWindow-Title"]}>Введите название категории</h1>
+                        <h1 className={s["ModalWindow-Title"]}>Введите название категории</h1>
                         <TextField id="outlined-basic" label="Введите название" variant="outlined"
                             fullWidth required placeholder="Например: Хобби" margin="normal"
                             value={inputExpensesName}

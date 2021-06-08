@@ -38,7 +38,8 @@ const ExpensesHistory: React.FC = () => {
                         ))
                     }
                     {expensesHistoryArr.length === 0 &&
-                        <h4 style={{ display: 'flex', margin: 0, padding: 10 + 'px' }}>
+                        <h4 className={"SomeClass"}
+                            style={{ display: 'flex', margin: 0, padding: 10 + 'px' }}>
                             Здесь пока  ничего нету, добавьте свою первую трату
                             </h4>
                     }

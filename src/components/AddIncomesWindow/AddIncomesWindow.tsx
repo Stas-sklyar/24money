@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Fade, TextField, Button, Modal } from '@material-ui/core'
 
-import s from '../ItemsExpenses/AddExpensesWindow/AddExpensesWindow.module.scss'
+import s from '../GeneralStylesForModalWindows.module.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redusers/rootReducer'
@@ -54,14 +54,14 @@ const AddIncomesWindow: React.FC = () => {
                     dispatch(toggleIncomesWindow(false))
                 }
             }}>
-            <Modal className={s["AddExpensesWindow-Body"]} open={incomeWindowIsOpen}>
+            <Modal className={s["ModalWindow-Body"]} open={incomeWindowIsOpen}>
                 <Fade in={incomeWindowIsOpen} timeout={400} style={{ height: 350 + "px" }} >
-                    <div className={s["AddExpensesWindow-Box"]}>
-                        <div className={s["AddExpensesWindow-CloseIcon"]}
+                    <div className={s["ModalWindow-Box"]}>
+                        <div className={s["ModalWindow-CloseIcon"]}
                             onClick={() => dispatch(toggleIncomesWindow(false))}>
                             ✕
                             </div>
-                        <h1 className={s["AddExpensesWindow-Title"]}>Доход</h1>
+                        <h1 className={s["ModalWindow-Title"]}>Доход</h1>
 
                         <TextField id="outlined-basic" label="Введите сумму" variant="outlined"
                             fullWidth required placeholder="Сумма" margin="normal"

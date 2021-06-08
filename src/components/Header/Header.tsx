@@ -28,7 +28,8 @@ const Header = () => {
                     <Grid item className={s["Header-Column"]}>
                         <span className={s["Header-Logo"]}>24Money <span>(demo)</span></span>
                         <Button
-                            variant="outlined"
+                            variant="contained"
+                            color="primary"
                             className={s["Header-Btn"]}
                             onClick={() => dispatch(toggleIncomesWindow(true))}
                         >Добавить доходы</Button>
@@ -36,11 +37,17 @@ const Header = () => {
                     </Grid>
 
                     <Grid item className={s["Header-Column"]}>
-                        <Button variant="outlined" className={s["Header-Btn"]}
+                        <Button
+                            variant="outlined"
+                            className={s["Header-Btn"]}
+                            color="primary"
                             onClick={() => dispatch(toggleHistoryWindow('expenses'))}
                         >История трат</Button>
 
-                        <Button variant="outlined" className={s["Header-Btn"]}
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            className={s["Header-Btn"]}
                             onClick={() => dispatch(toggleHistoryWindow('incomes'))}
                         >История доходов</Button>
                         <span className={s["Header-Label"]}>Расходы: <b>-{sumExpenses}₴</b></span>

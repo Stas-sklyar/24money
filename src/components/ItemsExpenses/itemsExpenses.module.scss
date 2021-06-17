@@ -7,14 +7,24 @@
     flex-wrap: wrap;
     padding: 15px;
 
+    @media screen and (max-width: 770px) {
+        height: auto;
+        justify-content: center;
+    }
+
     &-Diagram {
         position: absolute;
         top: 50%;
         left: 0;
         transform: translate(0, -50%);
+
+        @media screen and (max-width: 770px) {
+            display: none;
+        }
     }
 
     &-Item {
+        position: relative;
         height: 335px;
         display: flex;
         flex-direction: column;
@@ -24,9 +34,23 @@
         color: rgba(22, 22, 22, 0.932);
         font-size: 16px;
         font-weight: 500;
+
+        @media screen and (max-width: 770px) {
+            top: 0px;
+            height: 120px;
+            margin: 10px;
+        }
+
+        @media screen and (max-width: 430px) {
+            height: 110px;
+        }
     }
 
     &-Name {
+
+        @media screen and (max-width: 430px) {
+            font-size: 12px;
+        }
     }
 
     &-WrapForIcon {
@@ -46,6 +70,21 @@
             transform: scale(1.03);
             opacity: 1;
             transition: all .15s ease-in-out;
+        }
+
+        @media screen and (max-width: 430px) {
+            width: 55px;
+            height: 55px;
+
+            &:hover {
+                transform: none;
+            }
+        }
+
+        &__AddExpenseBtn {
+            @media screen and (max-width: 430px) {
+                height: 56px;
+            }
         }
     }
 

@@ -1,0 +1,22 @@
+.HistoryTable {
+    width: 700px;
+    margin: 0 auto;
+    overflow: auto;
+
+    @media screen and (max-width: 845px) {
+        width: 100%;
+    }
+
+    @media screen and (max-width: 560px) {
+        & td, & th {
+            padding: 5px;
+            font-size: 12px;
+        }
+    }
+
+    &-Subtitle {
+        font-weight: 600;
+        display: flex;
+        padding: 10px;
+    }
+}

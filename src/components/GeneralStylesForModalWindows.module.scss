@@ -1,11 +1,9 @@
 .ModalWindow {
 
-    // &-Body {
-    // }
 
     &-Box {
         width: 500px;
-        height: 300px;
+        min-height: 300px;
         background-color: #fff;
         outline: none;
         position: absolute;
@@ -14,6 +12,10 @@
         transform: translate(-50%, -50%);
         padding: 15px;
         text-align: center;
+
+        @media screen and (max-width: 560px) {
+            width: 300px;
+        }
     }
 
     &-CloseIcon {
@@ -25,5 +27,15 @@
 
     &-Title {
         text-align: center;
+
+        @media screen and (max-width: 560px) {
+            font-size: 22px;
+            line-height: 110%;
+        }
     }
+
+    &-Input {
+        margin: 15px 0;
+    }
+
 }

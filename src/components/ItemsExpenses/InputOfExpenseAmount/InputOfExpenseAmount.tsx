@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import Modal from '@material-ui/core/Modal'
-import { Fade } from '@material-ui/core'
-import { Button } from '@material-ui/core'
-import { Input } from '@material-ui/core';
+import { Fade, TextField, Button, Modal } from '@material-ui/core'
 
-import s from './InputOfExpenseAmount.module.scss'
+import s from '../../GeneralStylesForModalWindows.module.scss'
+
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../redusers/rootReducer'
@@ -50,18 +48,21 @@ const InputOfExpenseAmount: React.FC<{ curentItemId: number, curentCategory: str
                 }
             }} >
 
-            <Modal className={s["InputOfExpenseAmount-Body"]} open={inputExpenseAmountIsOpen}>
+            <Modal className={s["ModalWindow-Body"]} open={inputExpenseAmountIsOpen}>
                 <Fade in={true} timeout={400}>
-                    <div className={s["InputOfExpenseAmount-Box"]}>
-                        <div className={s["InputOfExpenseAmount-CloseIcon"]}
+                    <div className={s["ModalWindow-Box"]}>
+                        <div className={s["ModalWindow-CloseIcon"]}
                             onClick={() => dispatch(toggleInputExpenseAmountWindow(false))}>
                             ✕
                             </div>
-                        <h1 className={s["InputOfExpenseAmount-Title"]}>Введите сумму которую вы потратили</h1>
+                        <h1 className={s["ModalWindow-Title"]}>Введите сумму которую вы потратили</h1>
 
-                        <Input className={s["InputOfExpenseAmount-Input"]} placeholder="Введите сумму" autoFocus={true}
-                            type="number" required
-                            value={inputExpensesSum} onChange={handleChangeForSum} />
+                        <TextField className={s["ModalWindow-Input"]} id="outlined-basic"
+                            label="Введите сумму" variant="outlined"
+                            fullWidth autoFocus margin="normal" placeholder="Сумма"
+                            value={inputExpensesSum}
+                            onChange={handleChangeForSum}
+                        />
 
                         <Button variant="contained" size="large" onClick={addExpenses}>
                             Отправить сумму

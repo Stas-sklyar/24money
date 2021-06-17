@@ -6,8 +6,8 @@ import s from '../GeneralStylesForModalWindows.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redusers/rootReducer'
 import { toggleHistoryWindow } from '../../actions/actions'
-import ExpensesHistory from './expensesHistory/expensesHistory'
-import IncomesHistory from './incomesHistory/incomesHistory'
+import ExpensesHistory from './ExpensesHistory/ExpensesHistory'
+import IncomesHistory from './IncomesHistory/IncomesHistory'
 
 const HistoryWindow: React.FC = () => {
     const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const HistoryWindow: React.FC = () => {
             }}
         >
             <Modal className={s["ModalWindow-Body"]} open={historyWindowIsOpen === 'expenses'}>
-                <Fade in={historyWindowIsOpen === 'expenses'} timeout={400} style={{ height: 'auto', width: 800 + 'px' }} >
+                <Fade in={historyWindowIsOpen === 'expenses'} timeout={400} style={{ maxHeight: 90 + 'vh', overflowY: 'auto' }} >
                     <div className={s["ModalWindow-Box"]}>
                         <div className={s["ModalWindow-CloseIcon"]}
                             onClick={() => dispatch(toggleHistoryWindow('none'))}>
@@ -36,7 +36,7 @@ const HistoryWindow: React.FC = () => {
             </Modal>
 
             <Modal className={s["ModalWindow-Body"]} open={historyWindowIsOpen === 'incomes'}>
-                <Fade in={historyWindowIsOpen === 'incomes'} timeout={400} style={{ height: 'auto', width: 800 + 'px' }} >
+                <Fade in={historyWindowIsOpen === 'incomes'} timeout={400} style={{ maxHeight: 90 + 'vh', overflowY: 'auto' }} >
                     <div className={s["ModalWindow-Box"]}>
                         <div className={s["ModalWindow-CloseIcon"]}
                             onClick={() => dispatch(toggleHistoryWindow('none'))}>
@@ -46,9 +46,9 @@ const HistoryWindow: React.FC = () => {
                         <IncomesHistory />
                     </div>
                 </Fade>
-            </Modal>
+            </Modal >
 
-        </div>
+        </div >
     );
 }
 

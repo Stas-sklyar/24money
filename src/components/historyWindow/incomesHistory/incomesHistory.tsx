@@ -1,23 +1,17 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redusers/rootReducer';
 
-const useStyles = makeStyles({
-    table: {
-        minWidth: 650,
-    },
-});
+import s from '../HistoryWindow.module.scss'
 
 const IncomesHistory: React.FC = () => {
-    const classes = useStyles();
     const incomesHistoryArr = useSelector((state: RootState) => state.historyIncomes.historyIncomesList)
     const rows = incomesHistoryArr;
 
     return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
+        <TableContainer component={Paper} className={s["HistoryTable"]}>
+            <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell align="left">Сумма</TableCell>
@@ -35,14 +29,13 @@ const IncomesHistory: React.FC = () => {
                             </TableRow>
                         ))
                     }
-                    {incomesHistoryArr.length === 0 &&
-                        <h4 className={"SomeClass"}
-                            style={{ display: 'flex', margin: 0, padding: 10 + 'px' }}>
-                            Здесь пока  ничего нету, добавьте свою первую трату
-                            </h4>
-                    }
                 </TableBody>
             </Table>
+            {incomesHistoryArr.length === 0 &&
+                <b className={s["HistoryModal-Subtitle"]}>
+                    Здесь пока  ничего нету, добавьте какой-нибудь "доход"
+                </b>
+            }
         </TableContainer >
     );
 }
